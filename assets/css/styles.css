@@ -1,0 +1,78 @@
+/* General Body Styling */
+body {
+    font-family: Arial, sans-serif;
+    background-color: #f7f7f7;
+    margin: 0;
+    padding: 20px;
+}
+
+/* Form Title */
+h2 {
+    color: #333;
+    font-size: 24px;
+    text-align: center;
+    margin-bottom: 20px;
+}
+
+/* Form Container */
+form {
+    background-color: #fff;
+    padding: 20px;
+    border-radius: 8px;
+    box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+    max-width: 500px;
+    margin: 20px auto;
+}
+
+/* Input Fields Styling */
+form input[type="text"],
+form textarea,
+form select {
+    width: 100%;
+    padding: 10px;
+    margin-bottom: 15px;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+    font-size: 16px;
+}
+
+/* Textarea Specific Styling */
+form textarea {
+    height: 100px;
+    resize: vertical;
+}
+
+/* Submit Button Styling */
+form button[type="submit"] {
+    width: 100%;
+    background-color: #28a745;
+    color: #fff;
+    padding: 10px;
+    font-size: 18px;
+    border: none;
+    border-radius: 4px;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+}
+
+/* Submit Button Hover Effect */
+form button[type="submit"]:hover {
+    background-color: #218838;
+}
+
+/* Media Type Dropdown Styling */
+form select {
+    appearance: none;
+    background-color: #fff;
+    border: 1px solid #ccc;
+}
+
+/* Media Type Dropdown Icon */
+form select::-ms-expand {
+    display: none;
+}
+
+/* Ensuring Consistent Form Spacing */
+form + form {
+    margin-top: 40px;
+}

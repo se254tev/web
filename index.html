@@ -1,0 +1,863 @@
+<!DOCTYPE html>
+<!-- saved from url=(0077)file:///C:/Users/STEPHENE%20OTIENO/Desktop/MY-WEBAPP/server/public/index.html -->
+<html lang="en"><head><meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+    
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>MOVIE NERDS</title>
+    <style>
+        body {
+                margin: 0;
+                font-family: Arial, sans-serif;
+                background-color: black; 
+                background-image: url('pexels-apasaric-325185.jpg'); 
+                background-size: cover;
+                color: white;
+                overflow: hidden; 
+            }
+            @media (max-width: 1024px) {
+        body {
+        overflow-y: scroll; /* Enables scrolling on mobile and tablet devices */
+        -webkit-overflow-scrolling: touch; /* Smooth scrolling on iOS */
+            }
+
+    /* Hides the scrollbar but still allows scrolling */
+        body::-webkit-scrollbar {
+        display: none; /* For WebKit browsers */
+            }
+            }
+        .popup{
+                position: fixed;
+                top: 0;
+                left: 0;
+                width: 100%;
+                height: 100%;
+                background-color: rgba(0, 0, 0, 0.7);
+                display: flex;
+                justify-content: center;
+                align-items: center;
+                z-index: 1000;
+            }
+            .popup-content{
+                background-color: #c2b4d1;
+                padding: 2rem;
+                border-radius: 1.25rem;
+                width: 80%;
+                max-width: 37.50rem;
+                box-shadow: 0 5px 15px rgba(0, 0, 0, 0.3);
+                text-align: left;
+                animation: fadeln 0.3s ease-in-out;
+                transform: translate(0, 0);
+               
+            }
+            .popup-content h2, .popup-content h3, .popup-content p, .popup-content ul, .popup-content ol {
+                margin-top: 0;
+                color: #333;
+            }
+
+           .popup-content h2{
+                font-size: 2rem;
+                margin-bottom:1rem;
+            }
+            .popup-content h3 {
+                font-size: 1.5rem;
+                margin-top:1rem;
+                             }
+            .popup-content p,.popup-content ul,.popup-content ol{
+                font-size: 1rem;
+                color: #555;
+                line-height: 1.6;
+          
+            }
+            .popup-content ul{
+                list-style-type: disc;
+                padding-left:1.25rem ;
+            }
+            .popup-content ol{
+                list-style-type: decimal;
+                padding-left: 1.25rem;
+            }
+
+#accept-btn{
+            display: block;
+            width: 100%;
+            background-color: #000428;
+            color: #fff;
+            border: none;
+            border-radius: 0.3125rem;
+            cursor: pointer;
+            margin-top:0.625rem;
+            padding: 0.625rem; 
+            font-size: 1rem; /* Adjust font size */
+            font-weight: bold; 
+            transition: background-color 0.3s ease-in-out; 
+}
+#accept-btn:hover{
+    background-color: #45a049;
+}
+@keyframes fadeln{
+    from{
+        opacity: 0;
+        transform: scale(0.9);
+    }to{
+        opacity: 1;
+        transform: scale(1);
+    }
+}
+#start-chat {
+    background-color: #000428;
+    color: white;
+    border: none;
+    border-radius: 0.625rem;
+    cursor: pointer;
+    margin-bottom: 0.625rem;
+    padding: 0.625rem 1.25rem; 
+    font-size: 1rem; 
+    font-weight: bold; 
+    transition: background-color 0.3s ease; 
+}
+
+#start-chat:hover {
+    background-color: #001f4c; /* Darken background color on hover */
+}
+
+
+.content-container {
+    position: relative;
+    width: 100%;
+    height: 100%;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    padding: 1.25rem;
+}
+
+h3 {
+    font-family: 'Cinzel', serif; 
+    font-size: 3vw; 
+    text-align: center; 
+    color: #FFFFFF; 
+    text-shadow: 0.125rem 0.125rem 0.5rem rgba(0, 0, 0, 0.8); 
+    background: linear-gradient(to right, #000428, #004e92); 
+    padding: 0.625rem; 
+    border-radius: 0.3125rem; 
+    box-shadow: 0 0.625rem 1.25rem rgba(0, 0, 0, 0.5); 
+    margin-top: 0.625rem; 
+    margin-bottom: 0.3125rem; 
+    width: fit-content; 
+    margin-left: auto; 
+    margin-right: auto; 
+}
+
+@import url('https://fonts.googleapis.com/css2?family=Cinzel:wght@400;700&display=swap');
+
+#profile {
+    margin-bottom: 1.25rem;
+}
+
+#display-name {
+    width: 18.75rem;
+    padding: 0.625rem;
+    font-size: 1.2rem; /* Adjust font size */
+    border: none;
+    border-radius: 0.3125rem;
+    margin-right: 0.625rem;
+}
+
+#chat-box {
+    background-color: rgba(0, 0, 0, 0.5);
+    padding: 1.25rem;
+    border-radius: 0.625rem;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    position: relative;
+    width: calc(100% - 20rem);
+    max-width: 43.75rem;
+    overflow-y: auto;
+    max-height: 18.75rem;
+    box-shadow: 0 0.25rem 0.5rem rgba(0, 0, 0, 0.2);
+    scrollbar-width: none;
+    -ms-overflow-style: none;
+}
+
+#chat-box::-webkit-scrollbar {
+    width: 0px; /* Hide scrollbar for Chrome, Safari, and Opera */
+    background: transparent;
+}
+
+#message {
+    margin-bottom: 0.625rem;
+    overflow-y: auto;
+    max-height: 12.5rem;
+    width: 100%;
+    border: 0.0625rem solid #ccc;
+    padding: 0.625rem;
+    border-radius: 0.3125rem;
+    font-size: 1rem;
+    scrollbar-width: none;
+    -ms-overflow-style: none;
+}
+
+#message::-webkit-scrollbar {
+    width: 0px; /* Hide scrollbar for Chrome, Safari, and Opera */
+    background: transparent;
+}
+
+.message-container {
+    display: flex;
+    justify-content: flex-start;
+    margin-bottom: 1.25rem;
+}
+
+.message-container.sent {
+    justify-content: flex-end;
+}
+
+.message-box {
+    max-width: 70%;
+    padding: 0.625rem;
+    border-radius: 0.5rem;
+    background-color: rgba(255, 255, 255, 0.2);
+    word-wrap: break-word;
+    box-shadow: 0 0.125rem 0.25rem rgba(0, 0, 0, 0.1);
+
+}
+
+.message-time {
+    color: #aaa;
+    font-size: 0.75rem; /* Adjust font size */
+    margin-right: 0.375rem;
+}
+
+#input-box {
+    width: 100%;
+    padding: 0.625rem;
+    max-width: 80%;
+    margin-bottom: 0.625rem;
+    font-size: 1rem;
+    border: none;    
+    border-radius: 0.3125rem;
+    background-color: rgba(255, 255, 255, 0.9);
+    box-shadow: 0 0.125rem 0.25rem rgba(0, 0, 0, 0.1);
+
+}
+
+#send-button {
+    width: 100%;
+    max-width: 9.375rem;
+    padding: 0.625rem;
+    font-size: 1rem;
+    background-color: #4CAF50;
+    color: white;
+    border: none;
+    border-radius: 0.3125rem;
+    cursor: pointer;
+    margin-bottom: 0.625rem;
+    box-shadow: 0 0.125rem 0.25rem rgba(0, 0, 0, 0.2);
+    transition: background-color 0.3s ease;
+
+}
+
+#send-button:hover {
+    background-color: #45a049;
+}
+
+#file-label {
+    width: 100%;
+    max-width: 9.375rem;
+    font-size: 1rem; /* Adjust font size */
+    cursor: pointer;
+    padding: 0.625rem;
+    background-color: #007bff;
+    color: white;
+    border-radius: 0.3125rem;
+    margin-top: 0.625rem;
+    box-shadow: 0 0.125rem 0.25rem rgba(0, 0, 0, 0.2);
+    transition: background-color 0.3s ease;
+
+}
+
+#file-label:hover {
+    background-color: #0056b3;
+}
+
+#file-input {
+    display: none;
+}
+
+#discussion-section {
+    position: absolute;
+    top: 3.125rem;
+    left: 1.25rem;
+    width: 12.5rem;
+    background-color: rgba(0, 0, 0, 0.8);
+    color: white;
+    padding: 1.25rem;
+    border-radius: 0.625rem;
+    overflow-y: auto;
+    cursor: pointer;
+     scrollbar-width: none; /* Hide scrollbar for Firefox */
+    -ms-overflow-style: none;  /* Hide scrollbar for IE and Edge */
+}
+
+#discussion-section::-webkit-scrollbar {
+    width: 0px; /* Hide scrollbar for Chrome, Safari, and Opera */
+    background: transparent;
+}
+
+#announcements-section {
+    position: absolute;
+    bottom: 1.875rem;
+    left: 1.5625rem;
+    width: 12.5rem;
+    background-color: rgba(0, 0, 0, 0.8);
+    color: white;
+    padding: 1.25rem;
+    border-radius: 0.625rem;
+    cursor: pointer;
+    scrollbar-width: none;
+    -ms-overflow-style: none;
+
+}
+
+#announcements-section::-webkit-scrollbar {
+    width: 0px; /* Hide scrollbar for Chrome, Safari, and Opera */
+    background: transparent;
+}
+
+#share-icons {
+    position: absolute;
+    bottom: 0.625rem;
+    left: 50%;
+    transform: translateX(-50%);
+    color: rgb(14, 179, 102);
+
+}
+
+#share-icons a {
+    text-decoration: none;
+    color: rgb(9, 190, 115);
+    margin: 0 0.625rem;
+}
+
+.popup-box {
+    display: none;
+    position: fixed;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    width: 80%;
+    max-width: 37.5rem;
+    max-height: 80%;
+    background-color: rgba(0, 0, 0, 0.9);
+    color: white;
+    padding: 1.25rem;
+    border-radius: 0.625rem;
+    z-index: 10;
+    overflow-y: auto;
+    scrollbar-width: none;
+    -ms-overflow-style: none;
+}
+
+.popup-box::-webkit-scrollbar {
+    width: 0px; /* Hide scrollbar for Chrome, Safari, and Opera */
+    background: transparent;
+}
+
+.popup-box h2 {
+    margin-top: 0;
+}
+
+.popup-close {
+    cursor: pointer;
+    color: rgb(230, 237, 240);
+    float: right;
+    font-size: 1.25rem;
+}
+
+#contacts{
+    position: absolute;
+    top: 0;
+    right: 0;
+    bottom: 3.125rem;
+    width: 15rem;
+    background-color: rgba(0, 0, 0, 0.8);
+    color: aliceblue;
+    padding: 1.25rem;
+    box-sizing: border-box;
+    overflow-y: auto;
+    border-radius: 0.625rem;
+    box-shadow: 0 0.25rem 0.5rem rgba(0, 0, 0, 0.2);
+    transition: all 0.3s ease-in-out;
+ }
+#contacts::-webkit-scrollbar {
+    width: 0; 
+    background: transparent;
+}
+
+#contacts h3 {
+    margin-top: 0;
+    font-family: 'Arial', sans-serif;
+    border-bottom: 0.0625rem solid aliceblue;
+    padding-bottom: 0.625rem;
+
+}
+
+#contacts p {
+    color: #1e90ff;
+    text-decoration: none;
+    transition: color 0.2s;
+}
+
+#contacts a:hover {
+    color: #ff6347;
+}
+
+#contacts::after {
+    content: '';
+    position: absolute;
+    top: 0.625rem;
+    right: 0.9375rem;
+    width: 0;
+    height: 0;
+    border-left: 0.625rem solid transparent;
+    border-bottom: 0.625rem solid rgba(0, 0, 0, 0.85);
+
+}
+
+#contacts:hover {
+    transform: translateY(-0.625rem);
+}
+
+@media (max-width: 768px) {
+    #chat-box {
+        width: 80%;
+        max-width: none;
+        max-height: none;
+    }
+
+    #discussion-section, 
+    #announcements-section {
+        width: 100%;
+        position: static;
+        max-width: none;
+        margin: 0.625rem 0;
+    }
+
+    #profile {
+        margin-bottom: 0.625rem;
+    }
+
+    #display-name {
+        width: 15.625rem;
+    }
+
+    #contacts {
+        position: static;
+        width: 100%;
+        max-width: none;
+        margin: 0.625rem 0;
+       
+    }
+
+    #share-icons {
+        position: static;
+        bottom: 0;
+        left: 0;
+        transform: none;
+        width: 100%;
+        text-align: center;
+        margin: 0.625rem 0;
+    }
+
+    .content-container {
+        height: auto;
+        padding: 0.625rem;
+    }
+}
+
+@media (max-width: 480px) {
+    h3 {
+        font-size: 5vw; /* Further adjust for smaller screens */
+    }
+
+    #start-chat {
+        font-size: 0.8rem; /* Adjust font size */
+    }
+
+    #display-name {
+        width: 12.5rem;
+        font-size: 1rem; /* Adjust font size */
+    }
+
+    #input-box {
+        font-size: 0.9rem; /* Adjust font size */
+    }
+
+    #send-button,
+    #file-label {
+        font-size: 0.8rem; /* Adjust font size */
+    }
+
+    #message {
+        font-size: 0.9rem; /* Adjust font size */
+    }
+
+    .message-time {
+        font-size: 0.65rem; /* Adjust font size */
+    }
+}
+
+    </style>
+</head>
+<body>
+    <div id="rules-popup" class="popup" style="display: block;">
+        <div class="popup-content">
+            <h2>Rules and Regulations</h2>
+            <p>By using this website, you agree to abide by the following rules and regulations:</p>
+            <ul>
+                <li>Users should not be rude.</li>
+                <li>Users should not send any explicit content, including nudes.</li>
+                <li>Users should respect each other.</li>
+                <li>Users should not call each other by actual names.</li>
+                <li>Users should not refer to characters being discussed by their actual names.</li>
+                <li>No spamming or flooding the chat with messages.</li>
+                <li>No hateful or discriminatory language.</li>
+                <li>Respect the privacy of others; do not share personal information.</li>
+                <li>No advertising or self-promotion.</li>
+                <li><a href="more.html">read more</a></li>
+            </ul>
+            <h2>Steps for Using the Website:</h2>
+            <ol>
+                <li>Enter your display name.</li>
+                <li>Do not enter any sensitive information.</li>
+                <li>Links are not allowed.</li>
+                <li><li><a href="more.html">read more</a></li></li>
+            </ol>
+            <button id="accept-btn">Accept</button>
+        </div>
+    </div>
+
+    <div class="logo-container">
+        <img src="file:///C:/Users/STEPHENE%20OTIENO/Desktop/MY-WEBAPP/server/public/Screenshot%20(34)a.png" alt="screen talks" class="logo">
+    </div>
+
+    <div class="content-container">
+        <h3>Welcome to Screen Talks World</h3>
+        <div id="profile">
+            <input type="text" id="display-name" placeholder="Enter your display name">
+            <button id="start-chat" disabled="">Start Chat</button>
+        </div>
+
+        <div id="chat-box" style="display: none;">
+            <div id="message"></div>
+            <div style="width: 100%; display: flex; align-items: center;">
+                <input type="text" id="input-box" placeholder="Type your message here..." disabled="">
+                <input type="file" id="file-input" accept="image/*" disabled="">
+                <button id="send-button" disabled="">Send</button>
+            </div>
+            <div><label id="file-label" for="file-input" style="display: none;">Attach Image</label></div>
+        </div>
+    </div>
+
+    <div id="discussion-section">
+        <h2>Discussion Topics</h2>
+        <ul id="discussion-list"></ul>
+    </div>
+
+    <div id="announcements-section">
+        <h2>Announcements</h2>
+    </div>
+
+    <div id="contacts">
+        <h3>Contact Details:</h3>
+        <p>WhatsApp: <a href="https://wa.me/+254797819571">+254797819571</a></p>
+        <p>Email: <a href="mailto:stepheneotieno20@gmail.com">stepheneotieno20@gmail.com</a></p>
+        <p>Instagram: <a href="https://www.instagram.com/your-instagram">Your Instagram</a></p>
+        <p>Github: <a href="https://github.com/your-github">Your GitHub</a></p>
+    </div>
+
+    <div id="share-icons">
+        <p>
+            <a href="file:///C:/Users/STEPHENE%20OTIENO/Desktop/MY-WEBAPP/server/public/index.html#" id="whatsapp-share" target="_blank">Share on WhatsApp</a>
+            <a href="file:///C:/Users/STEPHENE%20OTIENO/Desktop/MY-WEBAPP/server/public/index.html#" id="instagram-share" target="_blank">Share on Instagram</a>
+            © 2024 screen talks. All rights reserved.
+        </p>
+    </div>
+
+    <div id="discussion-popup" class="popup-box">
+        <span class="popup-close" id="close-discussion-popup">×</span>
+        <h2>Discussion Topics</h2>
+        <div id="discussion-content"></div>
+    </div>
+
+    <div id="announcements-popup" class="popup-box">
+        <span class="popup-close" id="close-announcements-popup">×</span>
+        <h2>Announcements</h2>
+        <div id="announcements-content"></div>
+    </div>
+    <script>
+         document.addEventListener('DOMContentLoaded', function () {
+    
+        window.addEventListener('beforeunload', function () {
+        localStorage.removeItem('chatMessages');
+        localStorage.removeItem('displayName');
+    });
+
+    const startChatButton = document.getElementById('start-chat');
+    const displayNameInput = document.getElementById('display-name');
+    const chatBox = document.getElementById('chat-box');
+    const inputBox = document.getElementById('input-box');
+    const sendButton = document.getElementById('send-button');
+    const fileInput = document.getElementById('file-input');
+    const fileLabel = document.getElementById('file-label');
+    const messageBox = document.getElementById('message');
+    const rulesPopup = document.getElementById('rules-popup');
+    const acceptBtn = document.getElementById('accept-btn');
+
+    
+    function validateDisplayName(displayName){
+        const minLength=5;
+        const validPattern=/^[a-zA-Z]{5,}$/;
+        return validPattern.test(displayName);
+    }
+    acceptBtn.addEventListener("click", function () {
+        rulesPopup.style.display = "none";
+
+            
+        let displayName = prompt("Please enter your display name:");
+        while(!displayName || !validateDisplayName(displayName)){
+            displayName = prompt("please enter a valid display name:");
+        }
+        if (displayName) {
+            localStorage.setItem('displayName', displayName);
+            displayNameInput.value = displayName; 
+            startChatButton.disabled = false;
+            rulesPopup.style.display = "none";
+            sendDisplayNameToServer(displayName);
+
+        }
+    });
+
+    displayNameInput.addEventListener('input', function () {
+        startChatButton.disabled = !displayNameInput.value.trim(); 
+    });
+
+    startChatButton.addEventListener('click', function () {
+        const displayName = displayNameInput.value.trim();
+        if (displayName) {
+            localStorage.setItem('displayName', displayName);
+            enableChat(); 
+        }
+    });
+
+    function enableChat() {
+        const savedDisplayName = localStorage.getItem('displayName');
+        displayNameInput.value = savedDisplayName; 
+
+        chatBox.style.display = 'block';
+        inputBox.disabled = false;
+        sendButton.disabled = false;
+        fileInput.disabled = false;
+        fileLabel.style.display = 'block';
+        displayNameInput.disabled = true;
+        startChatButton.style.display = 'none';
+
+       
+        const savedMessages = JSON.parse(localStorage.getItem('chatMessages')) || [];
+        savedMessages.forEach(msg => addMessageToChat(msg.text, msg.time, msg.type));
+    }
+
+    
+    if (localStorage.getItem('displayName')) {
+        displayNameInput.value = localStorage.getItem('displayName');
+        startChatButton.disabled = false;
+    }
+
+    function addMessageToChat(messageText, messageTime, messageType = 'sent') {
+        const messageContainer = document.createElement('div');
+        messageContainer.classList.add('message-container', messageType);
+
+        const messageContent = document.createElement('div');
+        messageContent.classList.add('message-box');
+        messageContent.textContent = messageText;
+
+        const messageTimeElement = document.createElement('div');
+        messageTimeElement.classList.add('message-time');
+        messageTimeElement.textContent = messageTime;
+
+        messageContainer.appendChild(messageTimeElement);
+        messageContainer.appendChild(messageContent);
+        messageBox.appendChild(messageContainer);
+        messageBox.scrollTop = messageBox.scrollHeight; // Scroll to the bottom of the chat box
+
+        // Save messages to local storage
+        const savedMessages = JSON.parse(localStorage.getItem('chatMessages')) || [];
+        savedMessages.push({ text: messageText, time: messageTime, type: messageType });
+        localStorage.setItem('chatMessages', JSON.stringify(savedMessages));
+    }
+
+    function sendMessage() {
+        const messageText = inputBox.value.trim();
+        if (!messageText) return;
+
+        const now = new Date();
+        const messageTime = now.toLocaleTimeString();
+
+        addMessageToChat(messageText, messageTime);
+        inputBox.value = '';
+    }
+
+    function handleFileUpload(event) {
+        const file = event.target.files[0];
+        if (!file) return;
+
+        const reader = new FileReader();
+        reader.onload = function (e) {
+            const imageUrl = e.target.result;
+            const now = new Date();
+            const messageTime = now.toLocaleTimeString();
+
+            const image = new Image();
+            image.src = imageUrl;
+            image.style.maxWidth = '100%';
+
+            const messageContainer = document.createElement('div');
+            messageContainer.classList.add('message-container', 'sent');
+
+            const messageContent = document.createElement('div');
+            messageContent.classList.add('message-box');
+            messageContent.appendChild(image);
+
+            const messageTimeElement = document.createElement('div');
+            messageTimeElement.classList.add('message-time');
+            messageTimeElement.textContent = messageTime;
+
+            messageContainer.appendChild(messageTimeElement);
+            messageContainer.appendChild(messageContent);
+            messageBox.appendChild(messageContainer);
+            messageBox.scrollTop = messageBox.scrollHeight; // Scroll to the bottom of the chat box
+
+            // Save image messages to local storage
+            const savedMessages = JSON.parse(localStorage.getItem('chatMessages')) || [];
+            savedMessages.push({ text: imageUrl, time: messageTime, type: 'sent' });
+            localStorage.setItem('chatMessages', JSON.stringify(savedMessages));
+        };
+        reader.readAsDataURL(file);
+    }
+
+    document.getElementById('send-button').addEventListener('click', sendMessage);
+
+    document.getElementById('input-box').addEventListener('keypress', function (event) {
+        if (event.key === 'Enter') {
+            sendMessage();
+        }
+    });
+
+    document.getElementById('file-input').addEventListener('change', handleFileUpload);
+
+    document.getElementById('whatsapp-share').addEventListener('click', function (event) {
+        event.preventDefault();
+        const text = encodeURIComponent('Check out Movie Nerds website!');
+        window.open(`https://api.whatsapp.com/send?text=${text}`, '_blank');
+    });
+
+    document.getElementById('instagram-share').addEventListener('click', function (event) {
+        event.preventDefault();
+        const url = encodeURIComponent('http://192.168.242.128');
+        window.open(`https://www.instagram.com/?url=${url}`, '_blank');
+    });
+
+    async function fetchSummaries(){
+        try {
+            const response = await fetch('http://192.168.242.128/api/summaries');
+            if (!response.ok) throw new Error('Network response was not ok');
+            const data = await response.json();
+
+            //update discussion section
+            const discussionList = document.getElementById('discussion-list');
+            discussionList.innerHTML = data.discussionTopics.map(topic => `<li>${topic.summary}</li>`).join('');
+
+            //update announcements section
+            const announcementsSummary = document.getElementById('announcements-summary');
+            announcementsSummary.innerHTML = data.announcements.map(announcement => `<p>${announcement.summary}</p>`).join('');
+        } catch (error) {
+            console.error('Error fetching summaries:', error);
+        }
+    }
+
+    async function fetchDetails() {
+        try {
+            const response = await fetch('http://192.168.242.128/api/details');
+            if (!response.ok) throw new Error('Network response was not ok');
+            const data = await response.json();
+
+                        // Update discussion popup
+            const discussionContent = document.getElementById('discussion-content');
+            discussionContent.innerHTML = data.discussionTopics.map(topic => `<div><h3>${topic.title}</h3><p>${topic.details}</p></div>`).join('');
+
+            // Update announcements popup
+            const announcementsContent = document.getElementById('announcements-content');
+            announcementsContent.innerHTML = data.announcements.map(announcement => `<div><h3>${announcement.title}</h3><p>${announcement.details}</p></div>`).join('');
+        } catch (error) {
+            console.error('Error fetching details:', error);
+        }
+
+        }
+
+        function openPopup(popupId) {
+        const popup = document.getElementById(popupId);
+        popup.style.display = 'block';
+    }
+
+    function closePopup(popupId) {
+        const popup = document.getElementById(popupId);
+        popup.style.display = 'none';
+    }
+
+    document.getElementById('discussion-section').addEventListener('click', function() {
+        openPopup('discussion-popup');
+    });
+
+    document.getElementById('announcements-section').addEventListener('click', function() {
+        openPopup('announcements-popup');
+    });
+
+    document.getElementById('close-discussion-popup').addEventListener('click', function() {
+        closePopup('discussion-popup');
+    });
+
+    document.getElementById('close-announcements-popup').addEventListener('click', function() {
+        closePopup('announcements-popup');
+    });
+
+    async function sendDisplayNameToServer(displayName) {
+        try {
+            const response = await fetch('http://192.168.242.128/api/save-display-name', {
+                method: 'POST',
+                headers: {
+                    'Content-Type': 'application/json'
+                },
+                body: JSON.stringify({ displayName })
+            });
+            if (!response.ok) throw new Error('Network response was not ok');
+            console.log('Display name saved successfully');
+        } catch (error) {
+            console.error('Error saving display name:', error);
+        }
+    }
+
+    fetchSummaries();
+    fetchDetails();
+
+    // Show the rules popup when the page loads
+    rulesPopup.style.display = "block";
+});
+
+
+
+    </script>
+
+
+</body></html>
