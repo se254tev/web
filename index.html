@@ -672,11 +672,14 @@ h3 {
     const acceptBtn = document.getElementById('accept-btn');
 
     // Validate the display name
-    function validateDisplayName(displayName) {
-        const validPattern = /^[a-zA-Z]{5,}$/;
-        return validPattern.test(displayName);
-    }
-
+function validateDisplayName(displayName) {
+    // Regular expression to match the display name requirements:
+    // - At least four characters and at most six characters long
+    // - Only letters (A-Z) and up to two numbers (0-9)
+    // - Numbers can only appear at the beginning or end of the name
+    const validPattern = /^(?:\d{1,2}[a-zA-Z]{2,4}|[a-zA-Z]{2,4}\d{1,2}|[a-zA-Z]{4,6})$/;
+    return validPattern.test(displayName);
+}
     // Handle acceptance of rules
     acceptBtn.addEventListener("click", function () {
         rulesPopup.style.display = "none";
