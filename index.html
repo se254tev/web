@@ -69,18 +69,53 @@ body {
     justify-content: center;
     align-items: center;
     z-index: 1000;
+    padding: 10px; /*add padding for better spacing on mobile*/
+    box-sizing: border-box;/*ensure padding doesn't affect the widh*/
 }
 
 .popup-content {
     background-color: #c2b4d1;
     padding: 2rem;
     border-radius: 1.25rem;
-    width: 80%;
+    width: 100%;
     max-width: 37.5rem;
+    max-height: 90vh;
     box-shadow: 0 5px 15px rgba(0, 0, 0, 0.3);
     text-align: left;
+    overflow-y: auto;
     animation: fadeln 0.3s ease-in-out;
     transform: translate(0, 0);
+}
+.popup-content:: -webkit-scrollbar{
+    width: 6px;
+}
+ .popup-content::-webkit-scrollbar-thumb {
+    background-color: #888; 
+    border-radius: 10px;
+}
+.popup-content::-webkit-scrollbar-track {
+    background-color: #f1f1f1; 
+}
+
+@media (max-width: 768px) {
+    .popup-content {
+        width: 100%; /* Take up the full width of the screen */
+        max-width: 100%; /* Remove the maximum width limit */
+        height: auto;
+        max-height: 90vh; /* Still ensure it fits within the viewport height */
+        padding: 15px; /* Adjust padding for mobile */
+    }
+}
+
+@media (max-width: 480px) {
+    .popup-content {
+        padding: 10px; /* Further reduce padding for very small screens */
+        font-size: 0.9rem; /* Slightly reduce font size for readability */
+    }
+ #accept-btn {
+        font-size: 0.9rem; /* Adjust button size for smaller screens */
+        padding: 10px; 
+    }
 }
 
 .popup-content h2, 
