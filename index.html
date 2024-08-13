@@ -1,28 +1,48 @@
 <!DOCTYPE html>
-<!-- saved from url=(0077)file:///C:/Users/STEPHENE%20OTIENO/Desktop/MY-WEBAPP/server/public/index.html -->
+
 <html lang="en">
-    <head>
-    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+<head>
+    <meta charset=UTF-8">
     
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>MOVIE NERDS</title>
          <link href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" rel="stylesheet">
     <style>
-        body {
-                margin: 0;
-                font-family: Arial, sans-serif;
-                background-color: black; 
-                background-image: url('pexels-apasaric-325185.jpg'); 
-                background-size: cover;
-                color: white;
-                overflow: hidden; 
-            }
-            @media (max-width: 1024px) {
-        body {
+        /* Import Google Fonts at the top */
+@import url('https://fonts.googleapis.com/css2?family=Cinzel:wght@400;700&display=swap');
+
+body {
+    margin: 0;
+    font-family: Arial, sans-serif;
+    background-color: black;
+    background-image: url('pexels-apasaric-325185.jpg');
+    background-size: cover;
+    color: white;
+    overflow: hidden;
+}
+
+/* Mobile and tablet styles */
+@media (max-width: 1024px) {
+    body {
         overflow-y: scroll; /* Enables scrolling on mobile and tablet devices */
         -webkit-overflow-scrolling: touch; /* Smooth scrolling on iOS */
-            }
-        .logo-container {
+    }
+
+    /* Hide scrollbar for a cleaner look */
+    body::-webkit-scrollbar {
+        display: none; /* For WebKit browsers */
+    }
+}
+
+/* Improved scrollbar handling for accessibility */
+@media (max-width: 480px) {
+    body::-webkit-scrollbar {
+        display: block; /* Show scrollbar on smaller screens */
+    }
+}
+
+/* Logo container styling */
+.logo-container {
     text-align: center; /* Centers the logo container horizontally */
     margin: 1em; /* Adds space around the logo container */
 }
@@ -38,89 +58,99 @@
     margin-top: 0.5em; /* Space between the image and the text */
 }
 
-    /* Hides the scrollbar but still allows scrolling */
-        body::-webkit-scrollbar {
-        display: none; /* For WebKit browsers */
-            }
-            }
-        .popup{
-                position: fixed;
-                top: 0;
-                left: 0;
-                width: 100%;
-                height: 100%;
-                background-color: rgba(0, 0, 0, 0.7);
-                display: flex;
-                justify-content: center;
-                align-items: center;
-                z-index: 1000;
-            }
-            .popup-content{
-                background-color: #c2b4d1;
-                padding: 2rem;
-                border-radius: 1.25rem;
-                width: 80%;
-                max-width: 37.50rem;
-                box-shadow: 0 5px 15px rgba(0, 0, 0, 0.3);
-                text-align: left;
-                animation: fadeln 0.3s ease-in-out;
-                transform: translate(0, 0);
-               
-            }
-            .popup-content h2, .popup-content h3, .popup-content p, .popup-content ul, .popup-content ol {
-                margin-top: 0;
-                color: #333;
-            }
-
-           .popup-content h2{
-                font-size: 2rem;
-                margin-bottom:1rem;
-            }
-            .popup-content h3 {
-                font-size: 1.5rem;
-                margin-top:1rem;
-                             }
-            .popup-content p,.popup-content ul,.popup-content ol{
-                font-size: 1rem;
-                color: #555;
-                line-height: 1.6;
-          
-            }
-            .popup-content ul{
-                list-style-type: disc;
-                padding-left:1.25rem ;
-            }
-            .popup-content ol{
-                list-style-type: decimal;
-                padding-left: 1.25rem;
-            }
-
-#accept-btn{
-            display: block;
-            width: 100%;
-            background-color: #000428;
-            color: #fff;
-            border: none;
-            border-radius: 0.3125rem;
-            cursor: pointer;
-            margin-top:0.625rem;
-            padding: 0.625rem; 
-            font-size: 1rem; /* Adjust font size */
-            font-weight: bold; 
-            transition: background-color 0.3s ease-in-out; 
+/* Popup styling */
+.popup {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(0, 0, 0, 0.7);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    z-index: 1000;
 }
-#accept-btn:hover{
+
+.popup-content {
+    background-color: #c2b4d1;
+    padding: 2rem;
+    border-radius: 1.25rem;
+    width: 80%;
+    max-width: 37.5rem;
+    box-shadow: 0 5px 15px rgba(0, 0, 0, 0.3);
+    text-align: left;
+    animation: fadeln 0.3s ease-in-out;
+    transform: translate(0, 0);
+}
+
+.popup-content h2, 
+.popup-content h3, 
+.popup-content p, 
+.popup-content ul, 
+.popup-content ol {
+    margin-top: 0;
+    color: #333;
+}
+
+.popup-content h2 {
+    font-size: 2rem;
+    margin-bottom: 1rem;
+}
+
+.popup-content h3 {
+    font-size: 1.5rem;
+    margin-top: 1rem;
+}
+
+.popup-content p, 
+.popup-content ul, 
+.popup-content ol {
+    font-size: 1rem;
+    color: #555;
+    line-height: 1.6;
+}
+
+.popup-content ul {
+    list-style-type: disc;
+    padding-left: 1.25rem;
+}
+
+.popup-content ol {
+    list-style-type: decimal;
+    padding-left: 1.25rem;
+}
+
+#accept-btn {
+    display: block;
+    width: 100%;
+    background-color: #000428;
+    color: #fff;
+    border: none;
+    border-radius: 0.3125rem;
+    cursor: pointer;
+    margin-top: 0.625rem;
+    padding: 0.625rem;
+    font-size: 1rem;
+    font-weight: bold;
+    transition: background-color 0.3s ease-in-out;
+}
+
+#accept-btn:hover {
     background-color: #45a049;
 }
-@keyframes fadeln{
-    from{
+
+@keyframes fadeln {
+    from {
         opacity: 0;
         transform: scale(0.9);
-    }to{
+    }
+    to {
         opacity: 1;
         transform: scale(1);
     }
 }
+
 #start-chat {
     background-color: #000428;
     color: white;
@@ -128,16 +158,15 @@
     border-radius: 0.625rem;
     cursor: pointer;
     margin-bottom: 0.625rem;
-    padding: 0.625rem 1.25rem; 
-    font-size: 1rem; 
-    font-weight: bold; 
-    transition: background-color 0.3s ease; 
+    padding: 0.625rem 1.25rem;
+    font-size: 1rem;
+    font-weight: bold;
+    transition: background-color 0.3s ease;
 }
 
 #start-chat:hover {
     background-color: #001f4c; /* Darken background color on hover */
 }
-
 
 .content-container {
     position: relative;
@@ -151,23 +180,21 @@
 }
 
 h3 {
-    font-family: 'Cinzel', serif; 
-    font-size: 3vw; 
-    text-align: center; 
-    color: #FFFFFF; 
-    text-shadow: 0.125rem 0.125rem 0.5rem rgba(0, 0, 0, 0.8); 
-    background: linear-gradient(to right, #000428, #004e92); 
-    padding: 0.625rem; 
-    border-radius: 0.3125rem; 
-    box-shadow: 0 0.625rem 1.25rem rgba(0, 0, 0, 0.5); 
-    margin-top: 0.625rem; 
-    margin-bottom: 0.3125rem; 
-    width: fit-content; 
-    margin-left: auto; 
-    margin-right: auto; 
+    font-family: 'Cinzel', serif;
+    font-size: 3vw;
+    text-align: center;
+    color: #FFFFFF;
+    text-shadow: 0.125rem 0.125rem 0.5rem rgba(0, 0, 0, 0.8);
+    background: linear-gradient(to right, #000428, #004e92);
+    padding: 0.625rem;
+    border-radius: 0.3125rem;
+    box-shadow: 0 0.625rem 1.25rem rgba(0, 0, 0, 0.5);
+    margin-top: 0.625rem;
+    margin-bottom: 0.3125rem;
+    width: fit-content;
+    margin-left: auto;
+    margin-right: auto;
 }
-
-@import url('https://fonts.googleapis.com/css2?family=Cinzel:wght@400;700&display=swap');
 
 #profile {
     margin-bottom: 1.25rem;
@@ -176,7 +203,7 @@ h3 {
 #display-name {
     width: 18.75rem;
     padding: 0.625rem;
-    font-size: 1.2rem; /* Adjust font size */
+    font-size: 1.2rem;
     border: none;
     border-radius: 0.3125rem;
     margin-right: 0.625rem;
@@ -195,8 +222,8 @@ h3 {
     overflow-y: auto;
     max-height: 18.75rem;
     box-shadow: 0 0.25rem 0.5rem rgba(0, 0, 0, 0.2);
-    scrollbar-width: none;
-    -ms-overflow-style: none;
+    scrollbar-width: none; /* Hide scrollbar for Firefox */
+    -ms-overflow-style: none; /* Hide scrollbar for IE and Edge */
 }
 
 #chat-box::-webkit-scrollbar {
@@ -213,8 +240,8 @@ h3 {
     padding: 0.625rem;
     border-radius: 0.3125rem;
     font-size: 1rem;
-    scrollbar-width: none;
-    -ms-overflow-style: none;
+    scrollbar-width: none; /* Hide scrollbar for Firefox */
+    -ms-overflow-style: none; /* Hide scrollbar for IE and Edge */
 }
 
 #message::-webkit-scrollbar {
@@ -239,12 +266,11 @@ h3 {
     background-color: rgba(255, 255, 255, 0.2);
     word-wrap: break-word;
     box-shadow: 0 0.125rem 0.25rem rgba(0, 0, 0, 0.1);
-
 }
 
 .message-time {
     color: #aaa;
-    font-size: 0.75rem; /* Adjust font size */
+    font-size: 0.75rem;
     margin-right: 0.375rem;
 }
 
@@ -254,11 +280,10 @@ h3 {
     max-width: 80%;
     margin-bottom: 0.625rem;
     font-size: 1rem;
-    border: none;    
+    border: none;
     border-radius: 0.3125rem;
     background-color: rgba(255, 255, 255, 0.9);
     box-shadow: 0 0.125rem 0.25rem rgba(0, 0, 0, 0.1);
-
 }
 
 #send-button {
@@ -274,7 +299,6 @@ h3 {
     margin-bottom: 0.625rem;
     box-shadow: 0 0.125rem 0.25rem rgba(0, 0, 0, 0.2);
     transition: background-color 0.3s ease;
-
 }
 
 #send-button:hover {
@@ -284,7 +308,7 @@ h3 {
 #file-label {
     width: 100%;
     max-width: 9.375rem;
-    font-size: 1rem; /* Adjust font size */
+    font-size: 1rem;
     cursor: pointer;
     padding: 0.625rem;
     background-color: #007bff;
@@ -293,7 +317,6 @@ h3 {
     margin-top: 0.625rem;
     box-shadow: 0 0.125rem 0.25rem rgba(0, 0, 0, 0.2);
     transition: background-color 0.3s ease;
-
 }
 
 #file-label:hover {
@@ -315,8 +338,8 @@ h3 {
     border-radius: 0.625rem;
     overflow-y: auto;
     cursor: pointer;
-     scrollbar-width: none; /* Hide scrollbar for Firefox */
-    -ms-overflow-style: none;  /* Hide scrollbar for IE and Edge */
+    scrollbar-width: none; /* Hide scrollbar for Firefox */
+    -ms-overflow-style: none; /* Hide scrollbar for IE and Edge */
 }
 
 #discussion-section::-webkit-scrollbar {
@@ -334,9 +357,8 @@ h3 {
     padding: 1.25rem;
     border-radius: 0.625rem;
     cursor: pointer;
-    scrollbar-width: none;
-    -ms-overflow-style: none;
-
+    scrollbar-width: none; /* Hide scrollbar for Firefox */
+    -ms-overflow-style: none; /* Hide scrollbar for IE and Edge */
 }
 
 #announcements-section::-webkit-scrollbar {
@@ -350,7 +372,6 @@ h3 {
     left: 50%;
     transform: translateX(-50%);
     color: rgb(14, 179, 102);
-
 }
 
 #share-icons a {
@@ -374,8 +395,8 @@ h3 {
     border-radius: 0.625rem;
     z-index: 10;
     overflow-y: auto;
-    scrollbar-width: none;
-    -ms-overflow-style: none;
+    scrollbar-width: none; /* Hide scrollbar for Firefox */
+    -ms-overflow-style: none; /* Hide scrollbar for IE and Edge */
 }
 
 .popup-box::-webkit-scrollbar {
@@ -394,7 +415,7 @@ h3 {
     font-size: 1.25rem;
 }
 
-#contacts{
+#contacts {
     position: absolute;
     top: 0;
     right: 0;
@@ -408,7 +429,8 @@ h3 {
     border-radius: 0.625rem;
     box-shadow: 0 0.25rem 0.5rem rgba(0, 0, 0, 0.2);
     transition: all 0.3s ease-in-out;
- }
+}
+
 #contacts::-webkit-scrollbar {
     width: 0; 
     background: transparent;
@@ -419,7 +441,6 @@ h3 {
     font-family: 'Arial', sans-serif;
     border-bottom: 0.0625rem solid aliceblue;
     padding-bottom: 0.625rem;
-
 }
 
 #contacts p {
@@ -441,13 +462,13 @@ h3 {
     height: 0;
     border-left: 0.625rem solid transparent;
     border-bottom: 0.625rem solid rgba(0, 0, 0, 0.85);
-
 }
 
 #contacts:hover {
     transform: translateY(-0.625rem);
 }
 
+/* Responsive styling for smaller screens */
 @media (max-width: 768px) {
     #chat-box {
         width: 80%;
@@ -476,7 +497,6 @@ h3 {
         width: 100%;
         max-width: none;
         margin: 0.625rem 0;
-       
     }
 
     #share-icons {
@@ -591,8 +611,8 @@ h3 {
 
     <div id="share-icons">
         <p>
-            <a href="file:///C:/Users/STEPHENE%20OTIENO/Desktop/MY-WEBAPP/server/public/index.html#" id="whatsapp-share" target="_blank">Share on WhatsApp</a>
-            <a href="file:///C:/Users/STEPHENE%20OTIENO/Desktop/MY-WEBAPP/server/public/index.html#" id="instagram-share" target="_blank">Share on Instagram</a>
+            <a href="#" id="whatsapp-share" target="_blank">Share on WhatsApp</a>
+            <a href="#" id="instagram-share" target="_blank">Share on Instagram</a>
             © 2024 screen talks. All rights reserved.
         </p>
     </div>
@@ -610,8 +630,9 @@ h3 {
     </div>
     <script>
          document.addEventListener('DOMContentLoaded', function () {
-    
-        window.addEventListener('beforeunload', function () {
+
+    // Clear local storage on page unload
+    window.addEventListener('beforeunload', function () {
         localStorage.removeItem('chatMessages');
         localStorage.removeItem('displayName');
     });
@@ -627,45 +648,46 @@ h3 {
     const rulesPopup = document.getElementById('rules-popup');
     const acceptBtn = document.getElementById('accept-btn');
 
-    
-    function validateDisplayName(displayName){
-        const minLength=5;
-        const validPattern=/^[a-zA-Z]{5,}$/;
+    // Validate the display name
+    function validateDisplayName(displayName) {
+        const validPattern = /^[a-zA-Z]{5,}$/;
         return validPattern.test(displayName);
     }
+
+    // Handle acceptance of rules
     acceptBtn.addEventListener("click", function () {
         rulesPopup.style.display = "none";
 
-            
         let displayName = prompt("Please enter your display name:");
-        while(!displayName || !validateDisplayName(displayName)){
-            displayName = prompt("please enter a valid display name:");
+        while (!displayName || !validateDisplayName(displayName)) {
+            displayName = prompt("Please enter a valid display name:");
         }
         if (displayName) {
             localStorage.setItem('displayName', displayName);
-            displayNameInput.value = displayName; 
+            displayNameInput.value = displayName;
             startChatButton.disabled = false;
-            rulesPopup.style.display = "none";
             sendDisplayNameToServer(displayName);
-
         }
     });
 
+    // Enable chat button when a display name is entered
     displayNameInput.addEventListener('input', function () {
-        startChatButton.disabled = !displayNameInput.value.trim(); 
+        startChatButton.disabled = !displayNameInput.value.trim();
     });
 
+    // Start chat when the start button is clicked
     startChatButton.addEventListener('click', function () {
         const displayName = displayNameInput.value.trim();
         if (displayName) {
             localStorage.setItem('displayName', displayName);
-            enableChat(); 
+            enableChat();
         }
     });
 
+    // Enable chat functionalities
     function enableChat() {
         const savedDisplayName = localStorage.getItem('displayName');
-        displayNameInput.value = savedDisplayName; 
+        displayNameInput.value = savedDisplayName;
 
         chatBox.style.display = 'block';
         inputBox.disabled = false;
@@ -675,17 +697,11 @@ h3 {
         displayNameInput.disabled = true;
         startChatButton.style.display = 'none';
 
-       
         const savedMessages = JSON.parse(localStorage.getItem('chatMessages')) || [];
         savedMessages.forEach(msg => addMessageToChat(msg.text, msg.time, msg.type));
     }
 
-    
-    if (localStorage.getItem('displayName')) {
-        displayNameInput.value = localStorage.getItem('displayName');
-        startChatButton.disabled = false;
-    }
-
+    // Add a message to the chat box
     function addMessageToChat(messageText, messageTime, messageType = 'sent') {
         const messageContainer = document.createElement('div');
         messageContainer.classList.add('message-container', messageType);
@@ -709,6 +725,7 @@ h3 {
         localStorage.setItem('chatMessages', JSON.stringify(savedMessages));
     }
 
+    // Send a message
     function sendMessage() {
         const messageText = inputBox.value.trim();
         if (!messageText) return;
@@ -720,6 +737,7 @@ h3 {
         inputBox.value = '';
     }
 
+    // Handle file upload
     function handleFileUpload(event) {
         const file = event.target.files[0];
         if (!file) return;
@@ -780,19 +798,20 @@ h3 {
         window.open(`https://www.instagram.com/?url=${url}`, '_blank');
     });
 
-    async function fetchSummaries(){
+    // Fetch summaries and populate discussion and announcements sections
+    async function fetchSummaries() {
         try {
             const response = await fetch('http://192.168.242.128/api/summaries');
             if (!response.ok) throw new Error('Network response was not ok');
             const data = await response.json();
 
-            //update discussion section
+            // Update discussion section
             const discussionList = document.getElementById('discussion-list');
             discussionList.innerHTML = data.discussionTopics.map(topic => `<li>${topic.summary}</li>`).join('');
 
-            //update announcements section
-            const announcementsSummary = document.getElementById('announcements-summary');
-            announcementsSummary.innerHTML = data.announcements.map(announcement => `<p>${announcement.summary}</p>`).join('');
+            // Update announcements section
+            const announcementsSection = document.getElementById('announcements-section');
+            announcementsSection.innerHTML = data.announcements.map(announcement => `<p>${announcement.summary}</p>`).join('');
         } catch (error) {
             console.error('Error fetching summaries:', error);
         }
@@ -804,7 +823,7 @@ h3 {
             if (!response.ok) throw new Error('Network response was not ok');
             const data = await response.json();
 
-                        // Update discussion popup
+            // Update discussion popup
             const discussionContent = document.getElementById('discussion-content');
             discussionContent.innerHTML = data.discussionTopics.map(topic => `<div><h3>${topic.title}</h3><p>${topic.details}</p></div>`).join('');
 
@@ -814,10 +833,9 @@ h3 {
         } catch (error) {
             console.error('Error fetching details:', error);
         }
+    }
 
-        }
-
-        function openPopup(popupId) {
+    function openPopup(popupId) {
         const popup = document.getElementById(popupId);
         popup.style.display = 'block';
     }
@@ -827,22 +845,23 @@ h3 {
         popup.style.display = 'none';
     }
 
-    document.getElementById('discussion-section').addEventListener('click', function() {
+    document.getElementById('discussion-section').addEventListener('click', function () {
         openPopup('discussion-popup');
     });
 
-    document.getElementById('announcements-section').addEventListener('click', function() {
+    document.getElementById('announcements-section').addEventListener('click', function () {
         openPopup('announcements-popup');
     });
 
-    document.getElementById('close-discussion-popup').addEventListener('click', function() {
+    document.getElementById('close-discussion-popup').addEventListener('click', function () {
         closePopup('discussion-popup');
     });
 
-    document.getElementById('close-announcements-popup').addEventListener('click', function() {
+    document.getElementById('close-announcements-popup').addEventListener('click', function () {
         closePopup('announcements-popup');
     });
 
+    // Send display name to the server
     async function sendDisplayNameToServer(displayName) {
         try {
             const response = await fetch('http://192.168.242.128/api/save-display-name', {
@@ -859,6 +878,7 @@ h3 {
         }
     }
 
+    // Fetch summaries and details when the page loads
     fetchSummaries();
     fetchDetails();
 
