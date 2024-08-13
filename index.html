@@ -11,6 +11,9 @@
         /* Import Google Fonts at the top */
 @import url('https://fonts.googleapis.com/css2?family=Cinzel:wght@400;700&display=swap');
 
+/* Import Google Fonts at the top */
+@import url('https://fonts.googleapis.com/css2?family=Cinzel:wght@400;700&display=swap');
+
 body {
     margin: 0;
     font-family: Arial, sans-serif;
@@ -44,18 +47,14 @@ body {
 /* Logo container styling */
 .logo-container {
     text-align: center; /* Centers the logo container horizontally */
-    margin: 1em; /* Adds space around the logo container */
+    margin: 1em 0; /* Adds space around the logo container */
 }
 
 .logo {
     max-width: 6em; /* Adjust the width to your desired size */
     height: auto; /* Maintains aspect ratio */
-}
-
-.logo-caption {
-    font-size: 1em; /* Size of the text under the image */
-    color: #333; /* Text color */
-    margin-top: 0.5em; /* Space between the image and the text */
+    display: block;
+    margin: 0 auto; /* Centers the logo */
 }
 
 /* Popup styling */
@@ -304,7 +303,6 @@ h3 {
 #send-button:hover {
     background-color: #45a049;
 }
-
 #file-label {
     width: 100%;
     max-width: 9.375rem;
