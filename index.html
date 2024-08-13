@@ -5,6 +5,11 @@
     <meta charset=UTF-8">
     
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    
+    <div class="logo-container">
+        <img src="path-to-logo.png" alt="Logo" class="responsive-logo">
+    </div>
+
     <title>MOVIE NERDS</title>
          <link href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" rel="stylesheet">
     <style>
@@ -44,17 +49,24 @@ body {
     }
 }
 
-/* Logo container styling */
+/* CSS for logo placement and responsiveness */
 .logo-container {
-    text-align: center; /* Centers the logo container horizontally */
-    margin: 1em 0; /* Adds space around the logo container */
+    display: flex;
+    justify-content: center; /* Center the logo horizontally */
+    align-items: center; /* Center the logo vertically */
+    padding: 10px; /* Adjust as needed */
 }
 
-.logo {
-    max-width: 6em; /* Adjust the width to your desired size */
-    height: auto; /* Maintains aspect ratio */
-    display: block;
-    margin: 0 auto; /* Centers the logo */
+.responsive-logo {
+    max-width: 100%; /* Make the logo resize based on the container */
+    height: auto; /* Maintain aspect ratio */
+    width: auto; /* Maintain aspect ratio */
+}
+
+@media (max-width: 768px) {
+    .logo-container {
+        padding: 5px; /* Adjust padding for smaller screens */
+    }
 }
 
 /* Popup styling */
@@ -359,6 +371,21 @@ h3 {
 #file-input {
     display: none;
 }
+/* CSS for the "discussion" text */
+.discussion-text {
+    font-size: 1.2em; /* Adjust the font size */
+    white-space: nowrap; /* Prevent text from breaking into a new line */
+    overflow: hidden; /* Hide any overflowing content */
+    text-overflow: ellipsis; /* Add ellipsis (...) for overflowed text */
+}
+
+@media (min-width: 1024px) {
+    .discussion-text {
+        font-size: 1.5em; /* Increase the font size for larger screens */
+        white-space: normal; /* Allow wrapping on larger screens */
+        overflow: visible; /* Ensure content is visible */
+    }
+}
 
 #discussion-section {
     position: absolute;
@@ -591,11 +618,6 @@ h3 {
         <li><a href="more.html">read more</a></li>
         <button id="accept-btn">Accept</button>
     </div>
-</div>
-    <div class="logo-container">
-        <img src="film-reel (New size 1).png" alt="screen talks" class="logo">
-    </div>
-
     <div class="content-container">
         <h3>Welcome to Screen Talks World</h3>
         <div id="profile">
