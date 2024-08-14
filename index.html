@@ -253,7 +253,67 @@
             background-color: #45a049;
         }
 
-        /* Responsive styling for smaller screens */
+        /* Discussion and Announcement Sections */
+        #discussion-section, #announcements-section {
+            position: absolute;
+            left: 1.25rem;
+            width: 12.5rem;
+            background-color: rgba(0, 0, 0, 0.8);
+            color: white;
+            padding: 1.25rem;
+            border-radius: 0.625rem;
+            overflow-y: auto;
+            cursor: pointer;
+            scrollbar-width: none;
+            -ms-overflow-style: none;
+        }
+
+        #discussion-section {
+            top: 3.125rem;
+        }
+
+        #announcements-section {
+            bottom: 1.875rem;
+        }
+
+        #discussion-section::-webkit-scrollbar, 
+        #announcements-section::-webkit-scrollbar {
+            width: 0px;
+            background: transparent;
+        }
+
+        /* Popup Box for Discussion and Announcements */
+        .popup-box {
+            display: none;
+            position: fixed;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            width: 80%;
+            max-width: 37.5rem;
+            max-height: 80%;
+            background-color: rgba(0, 0, 0, 0.9);
+            color: white;
+            padding: 1.25rem;
+            border-radius: 0.625rem;
+            z-index: 10;
+            overflow-y: auto;
+            scrollbar-width: none;
+            -ms-overflow-style: none;
+        }
+
+        .popup-box::-webkit-scrollbar {
+            width: 0px;
+            background: transparent;
+        }
+
+        .popup-close {
+            cursor: pointer;
+            color: rgb(230, 237, 240);
+            float: right;
+            font-size: 1.25rem;
+        }
+
         @media (max-width: 768px) {
             h3 {
                 font-size: 5vw;
@@ -270,6 +330,12 @@
             }
             #send-button {
                 font-size: 0.8rem;
+            }
+            #discussion-section, 
+            #announcements-section {
+                width: 100%;
+                position: static;
+                margin: 0.625rem 0;
             }
         }
     </style>
@@ -306,6 +372,31 @@
         </div>
     </div>
 
+    <!-- Discussion Section -->
+    <div id="discussion-section">
+        <h2>Discussion Topics</h2>
+        <ul id="discussion-list"></ul>
+    </div>
+
+    <!-- Announcements Section -->
+    <div id="announcements-section">
+        <h2>Announcements</h2>
+    </div>
+
+    <!-- Discussion Popup -->
+    <div id="discussion-popup" class="popup-box">
+        <span class="popup-close" id="close-discussion-popup">×</span>
+        <h2>Discussion Topics</h2>
+        <div id="discussion-content"></div>
+    </div>
+
+    <!-- Announcements Popup -->
+    <div id="announcements-popup" class="popup-box">
+        <span class="popup-close" id="close-announcements-popup">×</span>
+        <h2>Announcements</h2>
+        <div id="announcements-content"></div>
+    </div>
+
     <script>
         document.addEventListener('DOMContentLoaded', function () {
             const startChatButton = document.getElementById('start-chat');
@@ -317,6 +408,8 @@
             const messageBox = document.getElementById('message');
             const rulesPopup = document.getElementById('rules-popup');
             const acceptBtn = document.getElementById('accept-btn');
+            const discussionPopup = document.getElementById('discussion-popup');
+            const announcementsPopup = document.getElementById('announcements-popup');
 
             function validateDisplayName(displayName) {
                 const minLength = 5;
@@ -386,6 +479,23 @@
                 if (event.key === 'Enter') {
                     sendButton.click();
                 }
+            });
+
+            // Discussion and Announcements Popups
+            document.getElementById('discussion-section').addEventListener('click', function() {
+                discussionPopup.style.display = 'block';
+            });
+
+            document.getElementById('announcements-section').addEventListener('click', function() {
+                announcementsPopup.style.display = 'block';
+            });
+
+            document.getElementById('close-discussion-popup').addEventListener('click', function() {
+                discussionPopup.style.display = 'none';
+            });
+
+            document.getElementById('close-announcements-popup').addEventListener('click', function() {
+                announcementsPopup.style.display = 'none';
             });
         });
     </script>
